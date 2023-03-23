@@ -38,13 +38,19 @@ function displayWeather(response) {
   );
 }
 
-function showCity(event) {
-  event.preventDefault();
+function search(city) {
   let apiKey = "2b6fdad0cbd018949c50c70f72250726";
-  let city = document.querySelector("#city-input").value;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayWeather);
 }
 
-let citySearch = document.querySelector("#search-city-bar");
-citySearch.addEventListener("submit", showCity);
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
+}
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
+
+search("Ankeny");
