@@ -17,27 +17,23 @@ time.innerHTML = `${day} ${hours}:${minutes}`;
 
 function displayWeather(response) {
   let location = document.querySelector("#current-city");
-  location.innerHTML = response.data.name;
-  console.log(response.data.main.temp);
-
   let tempElement = document.querySelector("#temperature");
-  tempElement.innerHTML = Math.round(celsiusTemp);
-
   let humidityElement = document.querySelector("#humid");
-  humidityElement.innerHTML = response.data.main.humidity;
-
   let windElement = document.querySelector("#wind");
-  windElement.innerHTML = Math.round(response.data.wind.speed);
-
   let descriptionElement = document.querySelector("#description");
-  descriptionElement.innerHTML = response.data.weather[0].description;
-
   let iconElement = document.querySelector("#icon");
+
+  celsiusTemp = response.data.main.temp;
+  location.innerHTML = response.data.name;
+  tempElement.innerHTML = Math.round(celsiusTemp);
+  humidityElement.innerHTML = response.data.main.humidity;
+  windElement.innerHTML = Math.round(response.data.wind.speed);
+  descriptionElement.innerHTML = response.data.weather[0].description;
   iconElement.setAttribute(
     "src",
     `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
-  celsiusTemp = response.data.main.temp;
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
 function search(city) {
