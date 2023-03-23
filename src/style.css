@@ -31,6 +31,10 @@ h5 {
   font-size: 15px;
 }
 
+#description {
+  text-transform: capitalize;
+}
+
 footer {
   text-align: center;
 }
